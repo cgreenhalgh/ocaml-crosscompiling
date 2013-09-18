@@ -56,5 +56,5 @@ We could avoid -use-ocamlfind and work out the dependencies ourselves, e.g. in a
 
 So a minimal change would be allow ocamlbuild's ocamlfind to be over-riden, and/or allow a toolchain to be specified for the current command. Then make sure this is used in findlib.ml as well as on options.ml. 
 
-A next elaboration would be allow a tag to specify toolchain on a per-file basis. But this would require changing all of the core commands. It would also require handling in the Findlib.query at least; not sure how this would play out.
+A next elaboration would be allow a tag to specify toolchain on a per-file basis. But this would require changing all of the core commands. It would also require handling in the Findlib.query at least; not sure how this would play out (e.g. because of the recursive nature of that query vs possible tagging strategies).
 
