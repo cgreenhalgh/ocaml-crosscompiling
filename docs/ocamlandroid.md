@@ -96,35 +96,35 @@ Following [ocaml-android](https://github.com/vouillon/ocaml-android/) the next s
   * system.patch - asmrun/signals_osdep.h, otherlibs/unix/getpw.c, otherlibs/unix/termios.c - workaround lack of sys/ucontext.h, lack of pw gecos and tcdrain
 * save byterun/ocamlrun
 * clean up native build (selective):
-
+```
 	make -C byterun clean
 	make -C stdlib clean
 	make -C otherlibs/unix clean
 	make -C otherlibs/str clean
 	make -C otherlibs/num clean
 	make -C otherlibs/dynlink clean
-
+```
 * build byterun and keep byterun/ocamlrun:
-
+```
 	make -C byterun all
 	mkdir -p ~/android/ocaml-cross/bin
 	cp byterun/ocamlrun ~/android/ocaml-cross/bin/ocamlrun.target
-
+```
 * put back the native one:
-
+```
 	cp ~/android/ocaml-native/bin/ocamlrun byterun/
-
+```
 * make the rest (be selective... don't world/coldstart!)
-
+```
 	make coreall opt-core otherlibraries otherlibrariesopt
 	make ocamltoolsopt
 	make install
-
+```
 Note: can't make camlp4out at this stage because of incompatible dllunix.so
 
 * possibly replace camlp4 stuff - not quite sure why at the moment:
 
+```
 	#rm -rf $(ANDROID_PREFIX)/lib/ocaml/camlp4
 	#ln -sf $(STDLIB)/camlp4 $(ANDROID_PREFIX)/lib/ocaml/camlp4
-
-
+```
